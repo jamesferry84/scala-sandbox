@@ -1,33 +1,45 @@
 package exercises
 
-abstract class MyList {
+object MyListExercise extends App {
 
-  //describes a list of Integers
-  //singly linked List
+  val myemptylist = Empty
+  println("myEmptyList= " + myemptylist.toString)
 
-  /*
-     method head = first element of the list
-     method tail = remainder of the list
-     method isEmpty = is this list empty
-     method add(int) => new List with this element added
-     override toString => a string representation of the list
-   */
+  val mylist = new MyListImplementation("A",new MyListImplementation(2, new MyListImplementation(3, Empty)))
+  println("mylist = " + mylist.toString )
+  val anotherNewList = mylist.add(4)
+  println(anotherNewList.toString)
 
-  abstract class MyList {
-    def head: Int
-    def tail: MyList
+
+
+  abstract class MyList[+A] {
+    def head[A]: A
+    def tail[A]: MyList[A]
     def isEmpty: Boolean
-    def add(num: Int): MyList
+    def add[A](num: A): MyList[A]
+    def printElements: String
+    override def toString: String = "[" + printElements + "]"
   }
 
-  object EmptyList extends MyList {
-    def head: Int = ???
-    def tail: MyList = ???
+  object Empty extends MyList {
+    def head[A]: A = throw new NoSuchElementException
+    def tail[A]: MyList[A] = throw new NoSuchElementException
     def isEmpty = true
-    def add(num: Int) = new MyList(num, EmptyList)
+    def add[A](element: A) = new MyListImplementation(element, Empty)
+    def printElements: String = ""
   }
 
-  class MyListImplementation extends MyList
-
+  class MyListImplementation[A](h: A, t: MyList[A]) extends MyList {
+    def head[A]: A = head
+    def tail[A]: MyList[A] = tail
+    def isEmpty: Boolean = false
+    def add[A](element: A) = new MyListImplementation(element, this)
+    def printElements: String = {
+      if(t.isEmpty) "" + h
+      else h + " " + t.printElements
+    }
+  }
 
 }
+
+
