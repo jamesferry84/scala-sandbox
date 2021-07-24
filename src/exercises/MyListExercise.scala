@@ -26,7 +26,7 @@ object MyListExercise extends App {
     def ++[B >: A](list: MyList[B]): MyList[B]
   }
 
-  object Empty extends MyList {
+  case object Empty extends MyList {
     def head[A]: A = throw new NoSuchElementException
     def tail[A]: MyList[A] = throw new NoSuchElementException
     def isEmpty = true
@@ -39,7 +39,7 @@ object MyListExercise extends App {
     def ++[B >: Nothing](list: MyList[B]): MyList[B] = list
   }
 
-  class MyListImplementation[+A](h: A, t: MyList[A]) extends MyList[A] {
+  case class MyListImplementation[+A](h: A, t: MyList[A]) extends MyList[A] {
     def head[A]: A = head
     def tail[A]: MyList[A] = tail
     def isEmpty: Boolean = false
