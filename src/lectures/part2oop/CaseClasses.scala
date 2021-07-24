@@ -24,10 +24,16 @@ object CaseClasses extends App {
   val mary = Person("Mary", 23)
 
   //6 Case classes are serializable
+  // Akka
+
   //7 Case classes have extractor patterns = Case classes can be used in PATTERN MATCHING
 
   case object UnitedKingdom {
     def name: String = "The UK of GB and NI"
   }
+
+  /*
+  Expand mylist - use case classes and case objects
+   */
 
 }
