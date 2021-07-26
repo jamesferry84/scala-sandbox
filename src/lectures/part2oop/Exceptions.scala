@@ -29,5 +29,5 @@ object Exceptions extends App {
   println(potentialFail)
 
   //How to define own exceptions
-  class MyException ex
+  class MyException extends Exception
 }
