@@ -32,10 +32,10 @@ object TuplesAndMaps extends App {
   println("To lower case " + phoneBook.map(pair => pair._1.toLowerCase -> pair._2))
 
   //filterKeys
-  println(phoneBook.view.filterKeys(x => x.startsWith("J")).toMap)
+  println(phoneBook.filterKeys(x => x.startsWith("J")))
 
   //mapValues
-  println(phoneBook.view.mapValues(number => "0245-" + number).toMap)
+  println(phoneBook.mapValues(number => "0245-" + number))
 
   //conversions
   println(phoneBook.toList)
